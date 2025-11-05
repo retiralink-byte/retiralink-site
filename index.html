@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RetiraLink — Content Takedowns</title>
+  <title>RetiraLink — Content takedowns for creators</title>
   <link rel="icon" href="/assets/favicon.svg">
+  <meta name="description" content="RetiraLink helps creators, studios and high-risk individuals remove stolen, leaked or abusive content. DMCA and platform-compliant takedown requests in English and Spanish.">
   <style>
     :root{
       --bg: #0b0c10;
@@ -12,7 +13,7 @@
       --card: rgba(6, 10, 14, 0.55);
       --stroke: rgba(255,255,255,.06);
       --text: #f4f7fb;
-      --subtle: rgba(244,247,251,.6);
+      --subtle: rgba(244,247,251,.7);
       --accent: #1f9d83;
       --accent2: #208cda;
     }
@@ -68,6 +69,7 @@
       font-size:.85rem;
       opacity:.85;
     }
+    .hero-nav a:hover{opacity:1;text-decoration:underline}
     .hero-grid{
       display:grid;
       grid-template-columns:1.05fr .95fr;
@@ -89,11 +91,13 @@
       background:rgba(4,5,7,.25);
       color:var(--text);
       font-weight:500;
+      cursor:pointer;
     }
     .btn.primary{
       background:linear-gradient(135deg, var(--accent), var(--accent2));
       border:none;
     }
+    .btn:hover{transform:translateY(-1px)}
     .hero-bullets{
       display:flex;
       gap:10px;
@@ -122,7 +126,8 @@
       font-size:.75rem;
       text-align:center;
     }
-    h2{margin-top:0;font-size:1.35rem}
+    h1,h2,h3{margin-top:0}
+    h2{font-size:1.35rem}
     ol,ul{color:var(--subtle);padding-left:18px}
     ol li, ul li{margin-bottom:4px}
     footer{
@@ -140,23 +145,33 @@
       .platform-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
     }
     @media (prefers-color-scheme:light){
-  body{
-    background:#f4f4f5;
-    color:#111827;
-  }
-  .card{
-    background:#ffffff;
-    color:#111827;
-  }
-  .hero-text,
-  ol, ul,
-  .hero-bullets,
-  .platform-box p,
-  #pricing p {
-    color:#374151;
-  }
-}
-
+      body{
+        background:#f4f4f5;
+        color:#111827;
+      }
+      .card{
+        background:#ffffff;
+        color:#111827;
+      }
+      .card h1,
+      .card h2,
+      .card h3{
+        color:#111827;
+      }
+      .hero-text,
+      .hero-bullets,
+      #how p,
+      #how li,
+      #pricing p,
+      #pricing li,
+      #why p,
+      #why li,
+      #faq p,
+      #faq li,
+      ol,
+      ul{
+        color:#374151;
+      }
     }
   </style>
 </head>
@@ -174,24 +189,25 @@
         <nav class="hero-nav">
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
+          <a href="#why">Why us</a>
           <a href="#faq">FAQ</a>
         </nav>
       </div>
 
       <div class="hero-grid">
         <div>
-          <h1 class="hero-title">Remove stolen and leaked content. Fast. EN/ES.</h1>
+          <h1 class="hero-title">Remove stolen and leaked content fast.</h1>
           <p class="hero-text">
-            We handle DMCA and platform-compliant takedown requests for adult creators, studios and high-risk creators across Reddit, X, Instagram, TikTok, YouTube, OnlyFans/Fansly and more.
+            We handle DMCA and platform-compliant takedown and abuse reports for creators, studios and high-risk individuals across Reddit, X, Instagram, TikTok, YouTube, OnlyFans/Fansly and more. Bilingual support (English & Español).
           </p>
           <div class="cta-row">
             <a id="cta-en" class="btn primary" href="#" target="_blank" rel="noopener">Start request (EN)</a>
             <a id="cta-es" class="btn" href="#" target="_blank" rel="noopener">Iniciar solicitud (ES)</a>
           </div>
           <div class="hero-bullets">
-            <span>✅ 24–48h first action</span>
-            <span>✅ evidence included</span>
-            <span>✅ 72h follow-ups</span>
+            <span>✅ First action within 24–48h</span>
+            <span>✅ Evidence & screenshots included</span>
+            <span>✅ Follow-ups after ~72h</span>
           </div>
         </div>
         <div class="platform-box">
@@ -217,11 +233,11 @@
     <div class="card">
       <h2>How it works</h2>
       <ol>
-        <li><b>You submit the form</b> – URLs, platforms and proof you own or represent the content.</li>
-        <li><b>We review & triage</b> – group links, pick the best angle for each platform, prepare evidence.</li>
-        <li><b>We file notices</b> – DMCA / abuse reports in EN/ES, usually within 24–48h on business days.</li>
-        <li><b>We follow up</b> – reminder/escalation after ~72h if the content is still live.</li>
-        <li><b>You get a summary</b> – removed, pending and escalated links.</li>
+        <li><b>You submit the form (EN/ES)</b> – share the URLs you want removed, platforms involved and a short description.</li>
+        <li><b>We verify ownership and collect evidence</b> – we check that you own or represent the content and save screenshots / records platforms usually require.</li>
+        <li><b>We file takedown / abuse notices</b> – DMCA or policy-based reports in English or Spanish, usually within 24–48h on business days.</li>
+        <li><b>We follow up</b> – we send reminders or escalations after ~72h if the content is still live.</li>
+        <li><b>You get a summary</b> – which links were removed, which are pending and which were escalated.</li>
       </ol>
     </div>
   </section>
@@ -230,7 +246,7 @@
   <section id="pricing" class="wrap">
     <div class="card">
       <h2>Pricing</h2>
-      <p style="color:rgba(244,247,251,.7);margin-bottom:14px">
+      <p style="color:var(--subtle);margin-bottom:14px">
         Simple structure: a one-time setup per case, plus a success fee per confirmed removal.
       </p>
       <ul>
@@ -253,9 +269,25 @@
           Email us at <a href="mailto:contact@retiralink.com">contact@retiralink.com</a>.
         </li>
       </ul>
-      <p style="margin-top:12px;font-size:.85rem;color:rgba(244,247,251,.65);">
+      <p style="margin-top:12px;font-size:.85rem;color:var(--subtle);">
         <b>No removal → no success fee.</b> You only pay the setup fee and confirmed removals.
       </p>
+    </div>
+  </section>
+
+  <!-- WHY RETIRALINK -->
+  <section id="why" class="wrap">
+    <div class="card">
+      <h2>Why RetiraLink?</h2>
+      <p style="color:var(--subtle);margin-bottom:12px">
+        RetiraLink is a small EU-based takedown service focused on helping creators, studios and high-risk individuals remove stolen, leaked or harmful content in English and Spanish.
+      </p>
+      <ul>
+        <li><b>Built for creators, not corporations.</b> We understand leaks, reposts and harassment around adult and high-risk content.</li>
+        <li><b>Bilingual support (EN/ES).</b> We prepare notices and talk to platforms in English and Spanish, including Latin America.</li>
+        <li><b>Privacy-minded.</b> We only share the minimum information platforms require and keep your details off public pages.</li>
+        <li><b>Simple, transparent pricing.</b> Clear setup and success fees – no long contracts, no hidden retainers.</li>
+      </ul>
     </div>
   </section>
 
@@ -263,17 +295,21 @@
   <section id="faq" class="wrap">
     <div class="card">
       <h2>FAQ</h2>
-      <p><b>How fast do you act?</b><br>
-      We aim to review and send first notices within 24–48h on business days.</p>
 
-      <p><b>Do you guarantee removal?</b><br>
-      No one can guarantee 100% removal, but we know how platforms work and which angles they respond to. You only pay success fees on confirmed removals.</p>
+      <p><b>What kind of cases do you handle?</b><br>
+      Mainly stolen or leaked photos/videos, copyright violations, impersonation profiles and harmful or abusive posts. If you’re not sure, send us the links and we’ll review for free.</p>
 
-      <p><b>Is this anonymous / private?</b><br>
-      We don’t publicly disclose your name or identity. Notices are filed with the minimum information platforms require.</p>
+      <p><b>Which platforms do you cover?</b><br>
+      We regularly file reports to Reddit, X (Twitter), Instagram, TikTok, YouTube, OnlyFans, Fansly and major hosting providers. For other sites we’ll check their abuse / legal contacts and advise what’s realistic.</p>
 
-      <p><b>Which languages do you support?</b><br>
-      English and Spanish (including Latin America). More languages possible with partners.</p>
+      <p><b>How long does removal take?</b><br>
+      First actions usually happen within 24–48h after you submit the form. Actual removal depends on the platform – some respond within hours, others may take a few days.</p>
+
+      <p><b>Do you guarantee 100% removal?</b><br>
+      No one can honestly guarantee 100%. We focus on cases with a strong policy or legal basis, and we only charge the success fee for confirmed removals.</p>
+
+      <p><b>Will my real name be visible?</b><br>
+      Where possible, we file notices as your representative. For some copyright or legal notices platforms may require your legal name – in those cases we explain exactly what will be shared before we send anything.</p>
     </div>
   </section>
 
@@ -293,7 +329,7 @@
         if(!cfg) return;
         if(cfg.form_en) document.getElementById('cta-en').href = cfg.form_en;
         if(cfg.form_es) document.getElementById('cta-es').href = cfg.form_es;
-        if(cfg.brand_name) document.title = cfg.brand_name + ' — Content Takedowns';
+        if(cfg.brand_name) document.title = cfg.brand_name + ' — Content takedowns for creators';
       })
       .catch(()=>{});
   </script>

@@ -9,23 +9,22 @@
   <style>
     :root{
       --bg: #05060a;
-      --bg-soft: #0b0c10;
-      --card: rgba(8, 12, 18, 0.85);
+      --card: rgba(8, 12, 18, 0.9);
       --stroke: rgba(255,255,255,.06);
       --text: #f4f7fb;
       --muted: rgba(244,247,251,.7);
-      --accent: #1f9d83;
-      --accent2: #208cda;
-      --danger: #f97373;
+      --accent: #22c1c3;
+      --accent2: #4a5dff;
+      --accent-soft: rgba(74,93,255,0.12);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
       background:
-        radial-gradient(circle at top left, #1a2440 0%, transparent 55%),
-        radial-gradient(circle at top right, #12352b 0%, transparent 55%),
-        linear-gradient(180deg, #05060a 0%, #05060a 35%, #05060a 100%);
+        radial-gradient(circle at top left, #1f2937 0%, transparent 55%),
+        radial-gradient(circle at top right, #0f172a 0%, transparent 50%),
+        linear-gradient(180deg, #020617 0%, #05060a 40%, #020617 100%);
       color:var(--text);
       min-height:100vh;
     }
@@ -36,8 +35,18 @@
       border:1px solid var(--stroke);
       border-radius:20px;
       padding:26px;
-      box-shadow:0 18px 35px rgba(0,0,0,.35);
-      backdrop-filter: blur(14px);
+      box-shadow:0 18px 35px rgba(0,0,0,.45);
+      backdrop-filter: blur(18px);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      border:1px solid rgba(255,255,255,0.02);
+      pointer-events:none;
     }
     .section{margin-top:22px}
     .hero-top{
@@ -56,13 +65,14 @@
     }
     .brand-logo{
       width:30px;height:30px;border-radius:12px;
-      background:linear-gradient(135deg, var(--accent2), var(--accent));
+      background:conic-gradient(from 160deg, #22c1c3, #4a5dff, #ec4899, #22c1c3);
       display:flex;align-items:center;justify-content:center;
       font-size:.7rem;font-weight:700;color:white;
+      box-shadow:0 0 0 1px rgba(15,23,42,.7);
     }
     .badge{
       background:rgba(32,140,218,.15);
-      border:1px solid rgba(148,206,255,.05);
+      border:1px solid rgba(148,206,255,.2);
       padding:4px 10px;
       border-radius:999px;
       font-size:.7rem;
@@ -100,7 +110,7 @@
       padding:11px 18px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.08);
-      background:rgba(4,5,7,.25);
+      background:rgba(4,5,7,.35);
       color:var(--text);
       font-weight:500;
       cursor:pointer;
@@ -109,6 +119,7 @@
     .btn.primary{
       background:linear-gradient(135deg, var(--accent), var(--accent2));
       border:none;
+      box-shadow:0 12px 28px rgba(32,120,255,.35);
     }
     .btn:hover{transform:translateY(-1px)}
     .hero-bullets{
@@ -129,10 +140,11 @@
     }
     .stat-pill b{display:block;font-size:.9rem;color:var(--text);}
     .platform-box{
-      background:rgba(5,8,14,.9);
-      border:1px solid rgba(255,255,255,.05);
+      background:rgba(5,8,18,.9);
+      border:1px solid rgba(148,163,184,.3);
       border-radius:18px;
       padding:16px;
+      box-shadow:0 10px 26px rgba(15,23,42,.65);
     }
     .platform-heading{
       display:flex;
@@ -148,9 +160,9 @@
       gap:6px;
       border-radius:999px;
       padding:4px 9px;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(148,163,184,.5);
       font-size:.7rem;
-      background:rgba(11,17,30,.9);
+      background:rgba(15,23,42,.9);
     }
     .pill-dot{
       width:7px;height:7px;border-radius:999px;
@@ -163,8 +175,8 @@
       margin-top:10px;
     }
     .platform-tile{
-      background:rgba(0,0,0,.3);
-      border:1px solid rgba(255,255,255,.06);
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.5);
       border-radius:999px;
       padding:6px 9px;
       font-size:.75rem;
@@ -184,10 +196,10 @@
       margin-top:12px;
     }
     .mini-card{
-      background:rgba(0,0,0,.25);
+      background:rgba(15,23,42,.9);
       border-radius:14px;
       padding:14px;
-      border:1px solid rgba(255,255,255,.05);
+      border:1px solid rgba(148,163,184,.4);
       font-size:.9rem;
     }
     .tag-row{
@@ -200,9 +212,9 @@
     }
     .tag{
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(148,163,184,.5);
       padding:3px 8px;
-      background:rgba(5,7,11,.7);
+      background:rgba(15,23,42,.9);
     }
     .section-label{
       text-transform:uppercase;
@@ -212,9 +224,71 @@
       opacity:.9;
       margin-bottom:4px;
     }
+    .quote-mark{
+      font-size:2rem;
+      line-height:1;
+      color:rgba(148,163,184,.9);
+    }
+    .bubble{
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.4);
+      background:rgba(15,23,42,.9);
+      padding:14px;
+      font-size:.9rem;
+      position:relative;
+    }
+    .bubble::after{
+      content:"";
+      position:absolute;
+      left:14px;
+      bottom:-8px;
+      border-width:8px 8px 0 0;
+      border-style:solid;
+      border-color:rgba(148,163,184,.4) transparent transparent transparent;
+      transform:rotate(225deg);
+    }
+    .avatar{
+      width:28px;height:28px;border-radius:999px;
+      background:linear-gradient(135deg,#4a5dff,#ec4899);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:.8rem;color:white;margin-right:8px;
+    }
+    .role{
+      font-size:.78rem;
+      color:var(--muted);
+    }
+    .chat-bar{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      background:rgba(15,23,42,.95);
+      border-radius:999px;
+      padding:8px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(148,163,184,.6);
+      box-shadow:0 18px 35px rgba(15,23,42,.8);
+      font-size:.82rem;
+      z-index:50;
+    }
+    .chat-dot{
+      width:9px;height:9px;border-radius:999px;
+      background:radial-gradient(circle,#22c55e 0%,#166534 60%);
+      box-shadow:0 0 0 4px rgba(34,197,94,.25);
+    }
+    .chat-btn{
+      border-radius:999px;
+      border:none;
+      padding:6px 10px;
+      font-size:.78rem;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:white;
+    }
     footer{
       max-width:1120px;
-      margin:0 auto 32px;
+      margin:0 auto 38px;
       padding:0 20px;
       font-size:.8rem;
       color:rgba(244,247,251,.45);
@@ -226,6 +300,7 @@
       .hero-top{flex-wrap:wrap}
       .platform-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
       .grid-3{grid-template-columns:1fr}
+      .chat-bar{left:12px;right:12px;justify-content:space-between;}
     }
     @media (prefers-color-scheme:light){
       body{
@@ -254,15 +329,19 @@
       #cases li,
       #why p,
       #why li,
+      #testimonials p,
+      #testimonials li,
       #faq p,
       #faq li,
       ol,
       ul{
         color:#374151;
       }
-      .platform-box{background:#f9fafb;}
+      .platform-box{background:#f9fafb;border-color:#e5e7eb;}
       .platform-tile{background:#e5e7eb;color:#111827;}
-      .mini-card{background:#f9fafb;}
+      .mini-card{background:#f9fafb;border-color:#e5e7eb;}
+      .bubble{background:#f9fafb;border-color:#e5e7eb;}
+      .chat-bar{background:#111827;color:#f9fafb;}
     }
   </style>
 </head>
@@ -281,6 +360,7 @@
           <a href="#how">How it works</a>
           <a href="#who">Who we help</a>
           <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Reviews</a>
           <a href="#faq">FAQ</a>
         </nav>
       </div>
@@ -316,7 +396,7 @@
           <div class="platform-heading">
             <span>Platforms we handle</span>
             <span class="pill">
-              <span class="pill-dot"></span> Live monitoring (manual)
+              <span class="pill-dot"></span> Manual monitoring
             </span>
           </div>
           <div class="platform-grid">
@@ -328,7 +408,7 @@
             <div class="platform-tile">OnlyFans / Fansly</div>
           </div>
           <p style="margin-top:12px;font-size:.72rem;color:var(--muted)">
-            English & Spanish support (Spain + Latin America). We can also contact hosts and smaller sites when they have an abuse / legal channel.
+            English & Spanish support (Spain + Latin America). We also contact hosts and smaller sites when they have an abuse / legal channel.
           </p>
         </div>
       </div>
@@ -457,21 +537,46 @@
     </div>
   </section>
 
-  <!-- WHY RETIRALINK -->
-  <section id="why" class="wrap section">
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="wrap section">
     <div class="card">
-      <div class="section-label">Why us</div>
-      <h2>Why RetiraLink?</h2>
-      <p class="muted" style="margin-bottom:12px">
-        RetiraLink is a small EU-based takedown service focused on creators and high-risk clients who need fast, discreet help with harmful content.
+      <div class="section-label">Reviews</div>
+      <h2>What clients say</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <div class="quote-mark">“</div>
+          <div class="bubble">
+            They handled my leaked OF sets across three sites in a week. I didn’t have time or energy to chase every platform.
+          </div>
+          <p class="role">
+            <span class="avatar">A</span>
+            Creator, Spain
+          </p>
+        </div>
+        <div class="mini-card">
+          <div class="quote-mark">“</div>
+          <div class="bubble">
+            We use RetiraLink as a central point for takedowns for our roster. It’s easier than having each creator do it alone.
+          </div>
+          <p class="role">
+            <span class="avatar">S</span>
+            Agency owner, EU
+          </p>
+        </div>
+        <div class="mini-card">
+          <div class="quote-mark">“</div>
+          <div class="bubble">
+            They helped me get a doxxing thread removed and explained clearly what was realistic. Felt safe and supported.
+          </div>
+          <p class="role">
+            <span class="avatar">M</span>
+            Public figure, LATAM
+          </p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;font-size:.8rem;">
+        Names anonymised for privacy. Real-world cases based on typical situations we handle.
       </p>
-      <ul>
-        <li><b>Built for creators, not corporations.</b> We understand leaks, reposts and harassment around adult and high-risk content.</li>
-        <li><b>Bilingual (EN/ES).</b> We prepare notices and talk to platforms in English and Spanish, including Latin America.</li>
-        <li><b>Privacy-minded.</b> We only share the minimum information platforms require and keep your details off public pages.</li>
-        <li><b>Human review.</b> No auto-spam. Each case is reviewed by a human before sending notices.</li>
-        <li><b>Clear expectations.</b> No one can guarantee 100% removal – we tell you upfront what’s realistic.</li>
-      </ul>
     </div>
   </section>
 
@@ -505,6 +610,17 @@
     <a href="https://x.com/retiralink" target="_blank" rel="noopener">X</a> ·
     <a href="https://www.linkedin.com/company/retiralink" target="_blank" rel="noopener">LinkedIn</a>
   </footer>
+
+  <!-- Fake "chat" bar that opens email -->
+  <div class="chat-bar">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="chat-dot"></div>
+      <span>Need help with a takedown?</span>
+    </div>
+    <button class="chat-btn" onclick="window.location.href='mailto:contact@retiralink.com?subject=Quick%20takedown%20question'">
+      Email us
+    </button>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();

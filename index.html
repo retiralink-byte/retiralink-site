@@ -2,660 +2,399 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <title>RetiraLink — Content Takedowns</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RetiraLink — Content takedowns for creators</title>
   <link rel="icon" href="/assets/favicon.svg">
-  <meta name="description" content="RetiraLink helps creators, studios and high-risk individuals remove stolen, leaked or abusive content. DMCA and platform-compliant takedown requests in English and Spanish.">
   <style>
     :root{
       --bg: #3b0d4f;
+      --bg2: #0b1020;
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
       --stroke: rgba(15,23,42,.08);
-      --accent: #ec4899; /* pink */
-      --accent2: #a855f7; /* purple */
+      --accent: #ec4899;  /* pink */
+      --accent2: #a855f7; /* violet */
+      --accent-soft: rgba(168,85,247,0.08);
     }
-    *{box-sizing:border-box}
+
+    *{box-sizing:border-box;margin:0;padding:0;}
     body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
-      background:
-        radial-gradient(circle at top left, #a855f7 0%, transparent 55%),
-        radial-gradient(circle at top right, #a855f7 0%, transparent 55%),
-        linear-gradient(180deg, #3b0d4f 0%, #2b0b39 40%, #140519 100%);
-      color:var(--text-main);
       min-height:100vh;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      background: radial-gradient(circle at top left, var(--accent2) 0%, var(--bg) 35%, var(--bg2) 100%);
+      color: var(--text-main);
+      padding:32px 16px 56px;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1120px;margin:0 auto;padding:30px 20px 20px}
-    .card{
-      background:var(--card-bg);
-      border:1px solid var(--stroke);
-      border-radius:20px;
-      padding:26px;
-      box-shadow:0 18px 35px rgba(15,23,42,.18);
-      position:relative;
-      overflow:hidden;
-      transition:transform .18s ease, box-shadow .18s ease;
+    .shell{
+      max-width:1040px;
+      margin:0 auto;
     }
-    .section{margin-top:22px}
-    .hero-top{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
-      align-items:center;
-    }
-    .brand{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-weight:600;
-      font-size:1rem;
-      color:var(--text-main);
-    }
-    .brand-logo{
-      width:30px;height:30px;border-radius:12px;
-      background:conic-gradient(from 160deg, #ec4899, #a855f7, #f97316, #ec4899);
-      display:flex;align-items:center;justify-content:center;
-      font-size:.7rem;font-weight:700;color:white;
-      box-shadow:0 0 0 1px rgba(15,23,42,.3);
-    }
-    .badge{
-      background:rgba(236,72,153,.09);
-      border:1px solid rgba(236,72,153,.45);
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:.7rem;
-      color:#9d174d;
-    }
-    .hero-nav{
-      display:flex;
-      gap:16px;
-      font-size:.85rem;
-      opacity:.9;
-      color:#4b5563;
-    }
-    .hero-nav a:hover{opacity:1;text-decoration:underline}
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:22px;
-      align-items:flex-start;
-    }
-    .hero-title{
-      font-size:2.2rem;
-      line-height:1.05;
-      margin-bottom:10px;
-      color:var(--text-main);
-    }
-    .hero-kicker{
-      font-size:.8rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:#6b7280;
-    }
-    .hero-text{
-      color:var(--text-muted);
-      max-width:54ch;
-      font-size:.96rem;
-    }
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .btn{
-      display:inline-block;
-      padding:11px 18px;
-      border-radius:14px;
-      border:1px solid rgba(148,163,184,.7);
-      background:#f9fafb;
-      color:var(--text-main);
-      font-weight:500;
-      cursor:pointer;
-      font-size:.9rem;
-    }
-    .btn.primary{
-      background:linear-gradient(135deg, var(--accent), var(--accent2));
-      border:none;
-      color:#f9fafb;
-      box-shadow:0 12px 28px rgba(236,72,153,.45);
-    }
-    .btn:hover{
-      border-color:#a855f7;
-    }
-    .hero-bullets{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-      font-size:.78rem;
-      color:#6b7280;
-    }
-    .stat-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:18px;
-      margin-top:18px;
-      font-size:.8rem;
-      color:#6b7280;
-    }
-    .stat-pill b{display:block;font-size:.9rem;color:var(--text-main);}
-    .platform-box{
-      background:#fdf2f8;
-      border:1px solid #f9a8d4;
-      border-radius:18px;
-      padding:16px;
-    }
-    .platform-heading{
+    .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:8px;
-      font-size:.85rem;
-      margin-bottom:4px;
-      color:#111827;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border-radius:999px;
-      padding:4px 9px;
-      border:1px solid rgba(236,72,153,.7);
-      font-size:.7rem;
-      background:rgba(236,72,153,.08);
-      color:#9d174d;
-    }
-    .pill-dot{
-      width:7px;height:7px;border-radius:999px;
-      background:radial-gradient(circle,#22c55e 0%,#166534 60%);
-    }
-    .platform-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:8px;
-      margin-top:10px;
-    }
-    .platform-tile{
-      background:#fce7f3;
-      border:1px solid #f9a8d4;
-      border-radius:999px;
-      padding:6px 9px;
-      font-size:.75rem;
-      text-align:center;
-      color:#9d174d;
-    }
-    h1,h2,h3{margin-top:0}
-    h2{font-size:1.35rem;margin-bottom:6px;color:var(--text-main);}
-    h3{font-size:1.1rem;margin-bottom:6px;color:var(--text-main);}
-    p{margin-top:6px;margin-bottom:6px}
-    .muted{color:var(--text-muted);font-size:.93rem}
-    ol,ul{color:var(--text-muted);padding-left:18px;font-size:.93rem}
-    ol li, ul li{margin-bottom:4px}
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:16px;
-      margin-top:12px;
-    }
-    .mini-card{
-      background:#f9fafb;
-      border-radius:14px;
-      padding:14px;
-      border:1px solid #e5e7eb;
-      font-size:.9rem;
-    }
-    .tag-row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:6px;
-      font-size:.73rem;
-      color:#6b7280;
-    }
-    .tag{
-      border-radius:999px;
-      border:1px solid #f9a8d4;
-      padding:3px 8px;
-      background:#fdf2f8;
-      color:#9d174d;
-    }
-    .section-label{
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:.7rem;
-      color:#9ca3af;
-      margin-bottom:4px;
-    }
-    .quote-mark{
-      font-size:2rem;
-      line-height:1;
-      color:#9ca3af;
-    }
-    .bubble{
-      border-radius:14px;
-      border:1px solid #e5e7eb;
-      background:#f9fafb;
-      padding:14px;
-      font-size:.9rem;
-      position:relative;
-      color:#374151;
-    }
-    .bubble::after{
-      content:"";
-      position:absolute;
-      left:14px;
-      bottom:-8px;
-      border-width:8px 8px 0 0;
-      border-style:solid;
-      border-color:#e5e7eb transparent transparent transparent;
-      transform:rotate(225deg);
-    }
-    .avatar{
-      width:28px;height:28px;border-radius:999px;
-      background:linear-gradient(135deg,#ec4899,#f97316);
-      display:inline-flex;align-items:center;justify-content:center;
-      font-size:.8rem;color:white;margin-right:8px;
-    }
-    .role{
-      font-size:.78rem;
-      color:#6b7280;
-    }
-    .chat-bar{
-      position:fixed;
-      right:16px;
-      bottom:16px;
-      background:#111827;
-      border-radius:999px;
-      padding:8px 14px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      border:1px solid rgba(15,23,42,.3);
-      box-shadow:0 18px 35px rgba(15,23,42,.8);
-      font-size:.82rem;
-      color:#f9fafb;
-      z-index:50;
-    }
-    .chat-dot{
-      width:9px;height:9px;border-radius:999px;
-      background:radial-gradient(circle,#22c55e 0%,#166534 60%);
-      box-shadow:0 0 0 4px rgba(34,197,94,.25);
-    }
-    .chat-btn{
-      border-radius:999px;
-      border:none;
-      padding:6px 10px;
-      font-size:.78rem;
-      cursor:pointer;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:white;
-    }
-    footer{
-      max-width:1120px;
-      margin:0 auto 38px;
-      padding:0 20px;
-      font-size:.8rem;
+      margin-bottom:24px;
       color:#e5e7eb;
     }
-    footer a{text-decoration:underline;color:inherit}
-    .policy-row{
-      margin-top:14px;
-      font-size:.78rem;
-      color:#6b7280;
+    .nav-left{
       display:flex;
-      flex-wrap:wrap;
-      gap:8px;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-logo{
+      width:30px;
+      height:30px;
+      border-radius:9px;
+      background:radial-gradient(circle at 30% 20%, #f9fafb 0, #c4b5fd 40%, #1e1b4b 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:0.9rem;
+    }
+    .nav-pill{
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.72rem;
+      border:1px solid rgba(249,250,251,.15);
+      background:rgba(15,23,42,.45);
+      backdrop-filter: blur(10px);
+    }
+    .nav-links{
+      display:flex;
+      gap:18px;
+      font-size:.9rem;
+    }
+    .nav-links a{
+      color:#e5e7eb;
+      text-decoration:none;
+      opacity:.85;
+    }
+    .nav-links a:hover{opacity:1;text-decoration:underline;}
+
+    .card{
+      background:var(--card-bg);
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      box-shadow:0 18px 45px rgba(15,23,42,.35);
+      padding:26px 26px 24px;
+      margin-bottom:26px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+      gap:26px;
       align-items:center;
     }
-    .policy-row .label{
-      font-weight:500;
-      color:#374151;
-      margin-right:4px;
-    }
-    .policy-pill{
-      border-radius:999px;
-      border:1px solid #e5e7eb;
-      padding:3px 8px;
-      background:#f9fafb;
+    .hero-eyebrow{
       font-size:.75rem;
-      color:#4b5563;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--accent2);
+      margin-bottom:6px;
     }
-
-    /* Hover effects for more "alive" feeling */
-    .mini-card,
-    .platform-box,
-    .platform-tile,
+    h1{
+      font-size:2rem;
+      line-height:1.1;
+      margin-bottom:10px;
+    }
+    .hero-sub{
+      font-size:.95rem;
+      color:var(--text-muted);
+      margin-bottom:16px;
+      max-width:38rem;
+    }
+    .hero-ctas{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:10px;
+    }
     .btn{
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      font-size:.9rem;
+      font-weight:500;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.18s ease-out;
     }
-
-    .mini-card:hover{
-      transform:translateY(-2px);
-      box-shadow:0 10px 24px rgba(15,23,42,.18);
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#f9fafb;
+      border-color:transparent;
+      box-shadow:0 10px 25px rgba(56,189,248,.25);
     }
-
-    .platform-box:hover{
-      transform:translateY(-2px);
-      box-shadow:0 14px 30px rgba(15,23,42,.22);
-    }
-
-    .platform-tile:hover{
-      transform:translateY(-1px) scale(1.02);
-      border-color:#ec4899;
-    }
-
     .btn.primary:hover{
-      transform:translateY(-1px);
-      box-shadow:0 16px 32px rgba(236,72,153,.55);
+      transform:translateY(-1px) scale(1.01);
+      box-shadow:0 14px 35px rgba(56,189,248,.3);
+    }
+    .btn.secondary{
+      background:white;
+      color:var(--text-main);
+    }
+    .btn.secondary:hover{
+      background:#f9fafb;
+      border-color:rgba(15,23,42,.16);
+    }
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      font-size:.8rem;
+      color:var(--text-muted);
+    }
+    .hero-badges span{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#f9fafb;
+      border:1px solid rgba(15,23,42,.04);
     }
 
-    @media (max-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .hero-title{font-size:1.9rem}
-      .hero-top{flex-wrap:wrap}
-      .platform-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
-      .grid-3{grid-template-columns:1fr}
-      .chat-bar{left:12px;right:12px;justify-content:space-between;}
+    .hero-right{
+      background:radial-gradient(circle at top,var(--accent-soft) 0,#f9fafb 60%,#eef2ff 100%);
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.5);
+      padding:18px 18px 16px;
+      font-size:.85rem;
+    }
+    .hero-right-title{
+      font-weight:600;
+      margin-bottom:10px;
+    }
+    .pill-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin-bottom:12px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      background:white;
+      border:1px solid rgba(148,163,184,.7);
+      text-align:center;
+      font-size:.8rem;
+    }
+    .hero-note{
+      font-size:.8rem;
+      color:var(--text-muted);
+    }
+
+    h2{
+      font-size:1.25rem;
+      margin-bottom:10px;
+    }
+    .section-text{
+      font-size:.9rem;
+      color:var(--text-muted);
+      margin-bottom:10px;
+    }
+
+    .steps{
+      list-style:decimal;
+      padding-left:1.1rem;
+      font-size:.9rem;
+      color:var(--text-muted);
+    }
+    .steps li{margin-bottom:6px;}
+
+    .pricing-list{
+      list-style:none;
+      font-size:.9rem;
+      color:var(--text-muted);
+    }
+    .pricing-list li{margin-bottom:6px;}
+    .pricing-tag{
+      font-weight:600;
+      color:var(--text-main);
+    }
+
+    .faq-item+ .faq-item{margin-top:10px;}
+    .faq-q{font-weight:600;font-size:.95rem;margin-bottom:3px;}
+    .faq-a{font-size:.9rem;color:var(--text-muted);}
+
+    footer{
+      margin-top:8px;
+      font-size:.8rem;
+      color:#e5e7eb;
+      text-align:center;
+      opacity:.8;
+    }
+    footer a{color:#e5e7eb;}
+
+    @media (max-width:800px){
+      body{padding:20px 12px 40px;}
+      .nav{flex-direction:column;align-items:flex-start;gap:10px;}
+      .hero{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
-
-  <!-- HERO -->
-  <div class="wrap" style="padding-top:32px">
-    <div class="card">
-      <div class="hero-top">
-        <div class="brand">
-          <div class="brand-logo">R</div>
-          RetiraLink
-          <span class="badge">Content takedowns · EN/ES</span>
-        </div>
-        <nav class="hero-nav">
-          <a href="#how">How it works</a>
-          <a href="#who">Who we help</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#testimonials">Reviews</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-      </div>
-
-      <div class="hero-grid">
+  <div class="shell">
+    <!-- top nav -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">R</div>
         <div>
-          <div class="hero-kicker">DMCA & POLICY TAKEDOWNS FOR CREATORS</div>
-          <h1 class="hero-title">Remove stolen and leaked content fast.</h1>
-          <p class="hero-text">
-            We handle DMCA and platform-compliant takedown and abuse reports for creators, studios and high-risk individuals across Reddit, X, Instagram, TikTok, YouTube, OnlyFans/Fansly and more. Bilingual support (English & Español).
+          <div style="font-weight:600">RetiraLink</div>
+          <div class="nav-pill">Content takedowns · EN/ES</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
+
+    <!-- hero card -->
+    <section class="card">
+      <div class="hero">
+        <div>
+          <div class="hero-eyebrow">DMCA & notice-and-takedown support</div>
+          <h1>Remove stolen content. Fast. Bilingual. Platform-compliant.</h1>
+          <p class="hero-sub">
+            We file DMCA / notice-and-takedown reports for creators and businesses across major platforms.
+            Native support in English and Spanish.
           </p>
-          <div class="cta-row">
-            <a id="cta-en" class="btn primary href="#">Start request (EN)</a>
-            <a id="cta-es" class="btn" href="# >Iniciar solicitud (ES)</a>
+          <div class="hero-ctas">
+            <a id="cta-en" class="btn primary" href="#" target="_blank" rel="noopener">
+              Start request (EN)
+            </a>
+            <a id="cta-es" class="btn secondary" href="#" target="_blank" rel="noopener">
+              Iniciar solicitud (ES)
+            </a>
           </div>
-          <div class="hero-bullets">
-            <span>✅ First action within 24–48h</span>
+          <div class="hero-badges">
+            <span>✅ First action in 24–48h</span>
             <span>✅ Evidence & screenshots included</span>
-            <span>✅ Follow-ups after ~72h</span>
-          </div>
-          <div class="stat-row">
-            <div class="stat-pill">
-              <b>EU-based</b>
-              Operating from Spain, working globally.
-            </div>
-            <div class="stat-pill">
-              <b>Creator-focused</b>
-              Built for leaks, reposts & harassment cases.
-            </div>
-          </div>
-          <div class="policy-row">
-            <span class="label">We work with platform policies for:</span>
-            <span class="policy-pill">Reddit</span>
-            <span class="policy-pill">X / Twitter</span>
-            <span class="policy-pill">Instagram</span>
-            <span class="policy-pill">TikTok</span>
-            <span class="policy-pill">YouTube</span>
-            <span class="policy-pill">OnlyFans / Fansly</span>
+            <span>✅ Follow-ups after 72h</span>
           </div>
         </div>
-        <div class="platform-box">
-          <div class="platform-heading">
-            <span>Platforms we handle</span>
-            <span class="pill">
-              <span class="pill-dot"></span> Manual monitoring
-            </span>
-          </div>
-          <div class="platform-grid">
-            <div class="platform-tile">Reddit</div>
-            <div class="platform-tile">X / Twitter</div>
-            <div class="platform-tile">Instagram</div>
-            <div class="platform-tile">TikTok</div>
-            <div class="platform-tile">YouTube</div>
-            <div class="platform-tile">OnlyFans / Fansly</div>
-          </div>
-          <p style="margin-top:12px;font-size:.72rem;color:#6b7280">
-            English & Spanish support (Spain + Latin America). We also contact hosts and smaller sites when they have an abuse / legal channel.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- HOW IT WORKS -->
-  <section id="how" class="wrap section">
-    <div class="card">
-      <div class="section-label">Process</div>
+        <aside class="hero-right">
+          <div class="hero-right-title">Platforms we handle</div>
+          <div class="pill-grid">
+            <div class="pill">Reddit</div>
+            <div class="pill">X / Twitter</div>
+            <div class="pill">Instagram</div>
+            <div class="pill">TikTok</div>
+            <div class="pill">YouTube</div>
+            <div class="pill">OnlyFans / Fansly</div>
+          </div>
+          <p class="hero-note">
+            Need LATAM/ES takedowns? We can submit Spanish-language notices as well.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- how it works -->
+    <section id="how" class="card">
       <h2>How it works</h2>
-      <p class="muted">We keep it simple: you send us links, we handle evidence, notices and follow-ups.</p>
-      <ol>
-        <li><b>You submit the form (EN/ES)</b> – share the URLs you want removed, platforms involved and a short description.</li>
-        <li><b>We verify ownership and collect evidence</b> – we check that you own or represent the content and save screenshots / records platforms usually require.</li>
-        <li><b>We file takedown / abuse notices</b> – DMCA or policy-based reports in English or Spanish, usually within 24–48h on business days.</li>
-        <li><b>We follow up</b> – we send reminders or escalations after ~72h if the content is still live.</li>
-        <li><b>You get a summary</b> – which links were removed, which are pending and which were escalated.</li>
+      <p class="section-text">
+        Simple process designed for busy creators, studios, and agencies.
+      </p>
+      <ol class="steps">
+        <li>Submit the form (EN or ES) with links and proof of ownership.</li>
+        <li>We verify ownership, collect evidence, and draft platform-compliant notices.</li>
+        <li>We file the reports and follow up after 72h if the content is still live.</li>
       </ol>
-    </div>
-  </section>
+    </section>
 
-  <!-- WHO WE HELP -->
-  <section id="who" class="wrap section">
-    <div class="card">
-      <div class="section-label">Clients</div>
-      <h2>Who we help</h2>
-      <p class="muted">RetiraLink is built around creators and teams who are constantly at risk of leaks, reposts and abuse.</p>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3>Independent creators</h3>
-          <p class="muted">
-            OnlyFans / Fansly / clip store creators dealing with leaks, ripped content and fake profiles.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Adult / NSFW</span>
-            <span class="tag">Leaks</span>
-            <span class="tag">Fake profiles</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <h3>Studios & agencies</h3>
-          <p class="muted">
-            Teams managing multiple creators and needing a single partner to centralise takedowns.
-          </p>
-          <div class="tag-row">
-            <span class="tag">10+ creators</span>
-            <span class="tag">Bulk URLs</span>
-            <span class="tag">Reporting</span>
-          </div>
-        </div>
-        <div class="mini-card">
-          <h3>High-risk individuals</h3>
-          <p class="muted">
-            Influencers, models or professionals facing harassment, doxxing or privacy violations.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Doxxing</span>
-            <span class="tag">Harassment</span>
-            <span class="tag">Reputation</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TYPICAL CASES -->
-  <section id="cases" class="wrap section">
-    <div class="card">
-      <div class="section-label">Use cases</div>
-      <h2>Typical situations we handle</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3>Leaked photo/video sets</h3>
-          <p class="muted">
-            Your paid content ends up on Telegram channels, forums or Reddit subs. We track main reposts and file takedowns where possible.
-          </p>
-        </div>
-        <div class="mini-card">
-          <h3>Fake / impersonation profiles</h3>
-          <p class="muted">
-            Someone is using your photos and name to scam fans or damage your reputation. We rely on platform policies to get them removed.
-          </p>
-        </div>
-        <div class="mini-card">
-          <h3>Harassment & doxxing</h3>
-          <p class="muted">
-            Threads targeting you, sharing private info or coordinating abuse. We flag policy violations and push for removal.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="wrap section">
-    <div class="card">
-      <div class="section-label">Pricing</div>
-      <h2>Simple, transparent structure</h2>
-      <p class="muted" style="margin-bottom:14px">
-        A one-time setup per case, plus a success fee per confirmed removal. No long-term contracts.
+    <!-- pricing -->
+    <section id="pricing" class="card">
+      <h2>Pricing</h2>
+      <p class="section-text">
+        Straight-forward structure: setup fee per case plus a success fee per confirmed removal.
       </p>
-      <ul>
-        <li>
-          <b>Starter — solo creators</b><br>
-          €49 setup per case<br>
-          + €30 per confirmed removal (per URL)
-        </li>
-        <br>
-        <li>
-          <b>Creator Pack — up to 20 URLs / month</b><br>
-          €249 / month<br>
-          Includes up to 20 URLs (new or recurring) and follow-ups.<br>
-          Extra confirmed removals: €15 / URL.
-        </li>
-        <br>
-        <li>
-          <b>Studios / agencies</b><br>
-          Custom plans for 10+ creators or 200+ URLs / month.<br>
-          Email us at <a href="mailto:contact@retiralink.com">contact@retiralink.com</a>.
-        </li>
+      <ul class="pricing-list">
+        <li><span class="pricing-tag">Starter — solo creators:</span> €49 setup per case + €30 per confirmed removal (per URL).</li>
+        <li><span class="pricing-tag">Creator pack — up to 20 URLs / month:</span> €249 / month, includes up to 20 URLs (new or recurring) and follow-ups. Extra confirmed removals: €15 / URL.</li>
+        <li><span class="pricing-tag">Studios / agencies:</span> Custom plans for 10+ creators or 200+ URLs / month. Email us at <a href="mailto:contact@retiralink.com">contact@retiralink.com</a>.</li>
+        <li style="margin-top:6px;"><em>No removal → no success fee. You only pay the setup fee and confirmed removals.</em></li>
       </ul>
-      <p class="muted" style="margin-top:12px;font-size:.85rem;">
-        <b>No removal → no success fee.</b> You only pay the setup fee and confirmed removals.
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="wrap section">
-    <div class="card">
-      <div class="section-label">Reviews</div>
-      <h2>What clients say</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <div class="quote-mark">“</div>
-          <div class="bubble">
-            They handled my leaked OF sets across three sites in a week. I didn’t have time or energy to chase every platform.
-          </div>
-          <p class="role">
-            <span class="avatar">A</span>
-            Creator, Spain
-          </p>
-        </div>
-        <div class="mini-card">
-          <div class="quote-mark">“</div>
-          <div class="bubble">
-            We use RetiraLink as a central point for takedowns for our roster. It’s easier than having each creator do it alone.
-          </div>
-          <p class="role">
-            <span class="avatar">S</span>
-            Agency owner, EU
-          </p>
-        </div>
-        <div class="mini-card">
-          <div class="quote-mark">“</div>
-          <div class="bubble">
-            They helped me get a doxxing thread removed and explained clearly what was realistic. Felt safe and supported.
-          </div>
-          <p class="role">
-            <span class="avatar">M</span>
-            Public figure, LATAM
-          </p>
-        </div>
-      </div>
-      <p class="muted" style="margin-top:10px;font-size:.8rem;">
-        Names anonymised for privacy. Real-world cases based on typical situations we handle.
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="wrap section">
-    <div class="card">
-      <div class="section-label">Questions</div>
+    <!-- FAQ -->
+    <section id="faq" class="card">
       <h2>FAQ</h2>
 
-      <p><b>What kind of cases do you handle?</b><br>
-      Mainly stolen or leaked photos/videos, copyright violations, impersonation profiles and harmful or abusive posts. If you’re not sure, send us the links and we’ll review for free.</p>
+      <div class="faq-item">
+        <div class="faq-q">Which platforms do you support?</div>
+        <div class="faq-a">
+          We regularly handle reports on Reddit, X / Twitter, Instagram, TikTok, YouTube, OnlyFans / Fansly
+          and most major hosting providers. If you have a different platform, include it in the form and we’ll review it.
+        </div>
+      </div>
 
-      <p><b>Which platforms do you cover?</b><br>
-      We regularly file reports to Reddit, X (Twitter), Instagram, TikTok, YouTube, OnlyFans, Fansly and major hosting providers. For other sites we’ll check their abuse / legal contacts and advise what’s realistic.</p>
+      <div class="faq-item">
+        <div class="faq-q">Do you guarantee content removal?</div>
+        <div class="faq-a">
+          No one can honestly guarantee removals. We prepare strong, policy-compliant notices with evidence and
+          follow-ups. You only pay the success fee for confirmed removals.
+        </div>
+      </div>
 
-      <p><b>How long does removal take?</b><br>
-      First actions usually happen within 24–48h after you submit the form. Actual removal depends on the platform – some respond within hours, others may take a few days.</p>
+      <div class="faq-item">
+        <div class="faq-q">How quickly do you act?</div>
+        <div class="faq-a">
+          We usually send the first takedown within 24–48 hours after receiving a complete request
+          (forms, proof, and links).
+        </div>
+      </div>
 
-      <p><b>Do you guarantee 100% removal?</b><br>
-      No one can honestly guarantee 100%. We focus on cases with a strong policy or legal basis, and we only charge the success fee for confirmed removals.</p>
+      <div class="faq-item">
+        <div class="faq-q">Do you work in Spanish?</div>
+        <div class="faq-a">
+          Yes — we can draft and submit notices in Spanish for Spanish-language or LATAM platforms.
+          Use the ES form if you prefer to describe the case in Spanish.
+        </div>
+      </div>
+    </section>
 
-      <p><b>Will my real name be visible?</b><br>
-      Where possible, we file notices as your representative. For some copyright or legal notices platforms may require your legal name – in those cases we explain exactly what will be shared before we send anything.</p>
-    </div>
-  </section>
-
-  <footer>
-    © <span id="year"></span> RetiraLink. Content Takedown Service (EU-based).
-    <br>Contact: <a href="mailto:contact@retiralink.com">contact@retiralink.com</a>
-    <br>Follow:
-    <a href="https://x.com/retiralink" target="_blank" rel="noopener">X</a> ·
-    <a href="https://www.linkedin.com/company/retiralink" target="_blank" rel="noopener">LinkedIn</a>
-  </footer>
-
-  <!-- Fake "chat" bar that opens email -->
-  <div class="chat-bar">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <div class="chat-dot"></div>
-      <span>Need help with a takedown?</span>
-    </div>
-    <button class="chat-btn" onclick="window.location.href='mailto:contact@retiralink.com?subject=Quick%20takedown%20question'">
-      Email us
-    </button>
+    <footer>
+      Contact: <a id="contact" href="mailto:contact@retiralink.com">contact@retiralink.com</a>
+    </footer>
   </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Load config.json and wire up buttons + contact
     fetch('/config.json')
-      .then(r => r.ok ? r.json() : null)
-      .then(cfg => {
-        if(!cfg) return;
-        if(cfg.form_en) document.getElementById('cta-en').href = cfg.form_en;
-        if(cfg.form_es) document.getElementById('cta-es').href = cfg.form_es;
-        if(cfg.brand_name) document.title = cfg.brand_name + ' — Content takedowns for creators';
+      .then(function(r){ return r.json(); })
+      .then(function(cfg){
+        var en = document.getElementById('cta-en');
+        var es = document.getElementById('cta-es');
+        if (cfg.form_en && en) en.href = cfg.form_en;
+        if (cfg.form_es && es){
+          es.href = cfg.form_es;
+          es.style.display = 'inline-flex';
+        }
+        if (cfg.contact_email){
+          var c = document.getElementById('contact');
+          if (c){
+            c.textContent = cfg.contact_email;
+            c.href = 'mailto:'+cfg.contact_email;
+          }
+        }
+        if (cfg.brand_name){
+          document.title = cfg.brand_name + ' — Content Takedowns';
+        }
       })
-      .catch(()=>{});
+      .catch(function(err){
+        console.error('Config load failed', err);
+      });
   </script>
 </body>
 </html>

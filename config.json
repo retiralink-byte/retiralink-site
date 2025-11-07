@@ -1,6 +1,6 @@
 {
-  "form_en": "https://docs.google.com/forms/d/e/1FAIpQLSeyqrtp2bTZaslOyjUl7IutoXauA7Cd3WDj9iW9Z9S0mQQ3SQ/viewform",
-  "form_es": https://docs.google.com/forms/d/e/1FAIpQLSeyqrtp2bTZaslOyjUl7IutoXauA7Cd3WDj9iW9Z9S0mQQ3SQ/viewform",
-  "contact_email": "contact@retiralink.com",
+  "form_en": "https://docs.google.com/forms/d/e/EN_FORM_ID/viewform",
+  "form_es": "https://docs.google.com/forms/d/e/ES_FORM_ID/viewform",
+  "contact_email": "your@email.com",
   "brand_name": "RetiraLink"
 }

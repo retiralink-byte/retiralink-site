@@ -370,31 +370,16 @@
   </div>
 
   <script>
-    // Load config.json and wire up buttons + contact
-    fetch('/config.json')
-      .then(function(r){ return r.json(); })
-      .then(function(cfg){
-        var en = document.getElementById('cta-en');
-        var es = document.getElementById('cta-es');
-        if (cfg.form_en && en) en.href = cfg.form_en;
-        if (cfg.form_es && es){
-          es.href = cfg.form_es;
-          es.style.display = 'inline-flex';
-        }
-        if (cfg.contact_email){
-          var c = document.getElementById('contact');
-          if (c){
-            c.textContent = cfg.contact_email;
-            c.href = 'mailto:'+cfg.contact_email;
-          }
-        }
-        if (cfg.brand_name){
-          document.title = cfg.brand_name + ' — Content Takedowns';
-        }
-      })
-      .catch(function(err){
-        console.error('Config load failed', err);
-      });
-  </script>
+  fetch('/config.json')
+    .then(r => r.json())
+    .then(cfg => {
+      document.getElementById('cta-en').href = cfg.form_en;
+      document.getElementById('cta-es').href = cfg.form_es;
+      var el = document.getElementById('contact');
+      if(cfg.contact_email){ el.textContent = cfg.contact_email; el.href = 'mailto:'+cfg.contact_email; }
+      if(cfg.brand_name){ document.title = cfg.brand_name + ' — Content Takedowns'; }
+    });
+</script>
+  
 </body>
 </html>

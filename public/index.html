@@ -1,126 +1,171 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RetiraLink — Content Takedowns</title>
-  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="icon" href="/assets/favicon.svg" />
   <style>
     :root {
-      --bg: #a855f7;
+      --bg: #3b0d4f;
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
-      --stroke: rgba(15,23,42,.08);
-      --accent: #ec4899;
-      --accent2: #9333ea;
+      --stroke: rgba(15, 23, 42, 0.08);
+      --accent: #ec4899; /* pink */
+      --accent2: #a855f7; /* purple */
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text-main);
     }
+
     .wrap {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 32px;
     }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--stroke);
       border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       padding: 28px;
-      margin-bottom: 24px;
     }
-    h1, h2 {
-      margin-top: 0;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
     }
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 12px;
+
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .badge {
       background: var(--accent2);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s ease;
+      color: white;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
     }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      color: white;
+      background: var(--accent2);
+      transition: background 0.3s ease;
+    }
+
     .btn:hover {
       background: var(--accent);
     }
-    .cta { margin-top: 16px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
     .tile {
       background: #f3f4f6;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 16px;
       font-size: 0.95rem;
-      margin-bottom: 10px;
     }
+
     footer {
-      font-size: 0.9rem;
-      opacity: 0.6;
-      margin-top: 30px;
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
-
   <div class="wrap">
     <div class="card">
       <header>
-        <h1>RetiraLink — Remove Stolen Content Fast</h1>
-        <p>Platform-compliant takedown requests for creators and businesses. Bilingual support: English & Español.</p>
+        <div class="brand">
+          <img src="/assets/logo.svg" alt="RetiraLink" width="36" height="36" />
+          RetiraLink
+          <span class="badge">EN / ES Support</span>
+        </div>
       </header>
 
+      <h1>Remove stolen or harmful content fast</h1>
+      <p>
+        We help creators and businesses submit takedown requests across Reddit, X, Instagram, TikTok, YouTube and more. 
+        Our team operates bilingually and follows each platform's compliance rules.
+      </p>
+
       <div class="cta">
-        <a id="cta-en" class="btn" href="#" target="_blank" rel="noopener">Start Request (EN)</a>
-        <a id="cta-es" class="btn" href="#" target="_blank" rel="noopener">Iniciar Solicitud (ES)</a>
+        <a id="cta-en" class="btn" href="#" target="_blank">Start Request (EN)</a>
+        <a id="cta-es" class="btn" href="#" target="_blank">Iniciar solicitud (ES)</a>
       </div>
-    </div>
 
-    <div class="card">
-      <h2>How it works</h2>
-      <ol>
-        <li>You submit the form.</li>
-        <li>We verify ownership and gather evidence.</li>
-        <li>We contact the platform and follow up.</li>
-      </ol>
-    </div>
+      <div class="grid">
+        <div class="tile">✔️ DMCA/Notice submissions</div>
+        <div class="tile">✔️ Evidence collection</div>
+        <div class="tile">✔️ Follow-up support (72h)</div>
+      </div>
 
-    <div class="card">
-      <h2>Pricing</h2>
-      <ul>
-        <li><b>Single takedown:</b> €49 setup + €30 per confirmed removal</li>
-        <li><b>Bundle (10 URLs):</b> €199 + €20 per confirmed removal</li>
-        <li><i>No removal, no success fee.</i></li>
-      </ul>
+      <footer>
+        Contact us: <a id="contact" href="#"></a>
+      </footer>
     </div>
-
-    <div class="card">
-      <h2>Client Testimonials</h2>
-      <div class="tile">“Amazing speed. Content was down in 48 hours.” — A.S.</div>
-      <div class="tile">“Handled my issue with TikTok very professionally.” — M.L.</div>
-      <div class="tile">“Highly recommend for bilingual support.” — J.R.</div>
-    </div>
-
-    <footer>
-      &copy; 2025 RetiraLink. All rights reserved.
-    </footer>
   </div>
 
-  <!-- CONFIG SCRIPT TO LOAD BUTTON LINKS -->
   <script>
-    fetch('/config.json').then(r => r.json()).then(cfg => {
-      document.getElementById('cta-en').href = cfg.form_en;
-      document.getElementById('cta-es').href = cfg.form_es;
-    });
+    fetch("/config.json")
+      .then((res) => res.json())
+      .then((cfg) => {
+        document.getElementById("cta-en").href = cfg.form_en;
+        document.getElementById("cta-es").href = cfg.form_es;
+        const contact = document.getElementById("contact");
+        if (cfg.contact_email) {
+          contact.textContent = cfg.contact_email;
+          contact.href = `mailto:${cfg.contact_email}`;
+        }
+        if (cfg.brand_name) {
+          document.title = cfg.brand_name + " — Content Takedowns";
+        }
+      });
   </script>
-
-  <!-- OPTIONAL LIVE CHAT -->
-  <!-- Replace with real widget if needed -->
-  <!-- <script src="YOUR_CHAT_WIDGET.js"></script> -->
-
 </body>
 </html>

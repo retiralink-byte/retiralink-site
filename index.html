@@ -2,384 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>RetiraLink — Content Takedowns</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RetiraLink — Content Takedowns</title>
   <link rel="icon" href="/assets/favicon.svg">
   <style>
-    :root{
-      --bg: #3b0d4f;
-      --bg2: #0b1020;
+    :root {
+      --bg: #a855f7;
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
       --stroke: rgba(15,23,42,.08);
-      --accent: #ec4899;  /* pink */
-      --accent2: #a855f7; /* violet */
-      --accent-soft: rgba(168,85,247,0.08);
+      --accent: #ec4899;
+      --accent2: #9333ea;
     }
-
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      min-height:100vh;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
-      background: radial-gradient(circle at top left, var(--accent2) 0%, var(--bg) 35%, var(--bg2) 100%);
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      background: var(--bg);
       color: var(--text-main);
-      padding:32px 16px 56px;
     }
-    .shell{
-      max-width:1040px;
-      margin:0 auto;
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px;
     }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:24px;
-      color:#e5e7eb;
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
     }
-    .nav-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
+    h1, h2 {
+      margin-top: 0;
     }
-    .nav-logo{
-      width:30px;
-      height:30px;
-      border-radius:9px;
-      background:radial-gradient(circle at 30% 20%, #f9fafb 0, #c4b5fd 40%, #1e1b4b 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:0.9rem;
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: var(--accent2);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
-    .nav-pill{
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:.72rem;
-      border:1px solid rgba(249,250,251,.15);
-      background:rgba(15,23,42,.45);
-      backdrop-filter: blur(10px);
+    .btn:hover {
+      background: var(--accent);
     }
-    .nav-links{
-      display:flex;
-      gap:18px;
-      font-size:.9rem;
+    .cta { margin-top: 16px; }
+    .tile {
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
     }
-    .nav-links a{
-      color:#e5e7eb;
-      text-decoration:none;
-      opacity:.85;
-    }
-    .nav-links a:hover{opacity:1;text-decoration:underline;}
-
-    .card{
-      background:var(--card-bg);
-      border-radius:18px;
-      border:1px solid var(--stroke);
-      box-shadow:0 18px 45px rgba(15,23,42,.35);
-      padding:26px 26px 24px;
-      margin-bottom:26px;
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
-      gap:26px;
-      align-items:center;
-    }
-    .hero-eyebrow{
-      font-size:.75rem;
-      font-weight:600;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--accent2);
-      margin-bottom:6px;
-    }
-    h1{
-      font-size:2rem;
-      line-height:1.1;
-      margin-bottom:10px;
-    }
-    .hero-sub{
-      font-size:.95rem;
-      color:var(--text-muted);
-      margin-bottom:16px;
-      max-width:38rem;
-    }
-    .hero-ctas{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-bottom:10px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:11px 16px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      font-size:.9rem;
-      font-weight:500;
-      text-decoration:none;
-      cursor:pointer;
-      transition:.18s ease-out;
-    }
-    .btn.primary{
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#f9fafb;
-      border-color:transparent;
-      box-shadow:0 10px 25px rgba(56,189,248,.25);
-    }
-    .btn.primary:hover{
-      transform:translateY(-1px) scale(1.01);
-      box-shadow:0 14px 35px rgba(56,189,248,.3);
-    }
-    .btn.secondary{
-      background:white;
-      color:var(--text-main);
-    }
-    .btn.secondary:hover{
-      background:#f9fafb;
-      border-color:rgba(15,23,42,.16);
-    }
-    .hero-badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      font-size:.8rem;
-      color:var(--text-muted);
-    }
-    .hero-badges span{
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      padding:4px 8px;
-      border-radius:999px;
-      background:#f9fafb;
-      border:1px solid rgba(15,23,42,.04);
-    }
-
-    .hero-right{
-      background:radial-gradient(circle at top,var(--accent-soft) 0,#f9fafb 60%,#eef2ff 100%);
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,.5);
-      padding:18px 18px 16px;
-      font-size:.85rem;
-    }
-    .hero-right-title{
-      font-weight:600;
-      margin-bottom:10px;
-    }
-    .pill-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-      margin-bottom:12px;
-    }
-    .pill{
-      padding:8px 10px;
-      border-radius:999px;
-      background:white;
-      border:1px solid rgba(148,163,184,.7);
-      text-align:center;
-      font-size:.8rem;
-    }
-    .hero-note{
-      font-size:.8rem;
-      color:var(--text-muted);
-    }
-
-    h2{
-      font-size:1.25rem;
-      margin-bottom:10px;
-    }
-    .section-text{
-      font-size:.9rem;
-      color:var(--text-muted);
-      margin-bottom:10px;
-    }
-
-    .steps{
-      list-style:decimal;
-      padding-left:1.1rem;
-      font-size:.9rem;
-      color:var(--text-muted);
-    }
-    .steps li{margin-bottom:6px;}
-
-    .pricing-list{
-      list-style:none;
-      font-size:.9rem;
-      color:var(--text-muted);
-    }
-    .pricing-list li{margin-bottom:6px;}
-    .pricing-tag{
-      font-weight:600;
-      color:var(--text-main);
-    }
-
-    .faq-item+ .faq-item{margin-top:10px;}
-    .faq-q{font-weight:600;font-size:.95rem;margin-bottom:3px;}
-    .faq-a{font-size:.9rem;color:var(--text-muted);}
-
-    footer{
-      margin-top:8px;
-      font-size:.8rem;
-      color:#e5e7eb;
-      text-align:center;
-      opacity:.8;
-    }
-    footer a{color:#e5e7eb;}
-
-    @media (max-width:800px){
-      body{padding:20px 12px 40px;}
-      .nav{flex-direction:column;align-items:flex-start;gap:10px;}
-      .hero{grid-template-columns:1fr;}
+    footer {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <!-- top nav -->
-    <header class="nav">
-      <div class="nav-left">
-        <div class="nav-logo">R</div>
-        <div>
-          <div style="font-weight:600">RetiraLink</div>
-          <div class="nav-pill">Content takedowns · EN/ES</div>
-        </div>
+
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1>RetiraLink — Remove Stolen Content Fast</h1>
+        <p>Platform-compliant takedown requests for creators and businesses. Bilingual support: English & Español.</p>
+      </header>
+
+      <div class="cta">
+        <a id="cta-en" class="btn" href="#" target="_blank" rel="noopener">Start Request (EN)</a>
+        <a id="cta-es" class="btn" href="#" target="_blank" rel="noopener">Iniciar Solicitud (ES)</a>
       </div>
-      <nav class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-    </header>
+    </div>
 
-    <!-- hero card -->
-    <section class="card">
-      <div class="hero">
-        <div>
-          <div class="hero-eyebrow">DMCA & notice-and-takedown support</div>
-          <h1>Remove stolen content. Fast. Bilingual. Platform-compliant.</h1>
-          <p class="hero-sub">
-            We file DMCA / notice-and-takedown reports for creators and businesses across major platforms.
-            Native support in English and Spanish.
-          </p>
-          <div class="hero-ctas">
-            <a id="cta-en" class="btn primary" href="#" target="_blank" rel="noopener">
-              Start request (EN)
-            </a>
-            <a id="cta-es" class="btn secondary" href="#" target="_blank" rel="noopener">
-              Iniciar solicitud (ES)
-            </a>
-          </div>
-          <div class="hero-badges">
-            <span>✅ First action in 24–48h</span>
-            <span>✅ Evidence & screenshots included</span>
-            <span>✅ Follow-ups after 72h</span>
-          </div>
-        </div>
-
-        <aside class="hero-right">
-          <div class="hero-right-title">Platforms we handle</div>
-          <div class="pill-grid">
-            <div class="pill">Reddit</div>
-            <div class="pill">X / Twitter</div>
-            <div class="pill">Instagram</div>
-            <div class="pill">TikTok</div>
-            <div class="pill">YouTube</div>
-            <div class="pill">OnlyFans / Fansly</div>
-          </div>
-          <p class="hero-note">
-            Need LATAM/ES takedowns? We can submit Spanish-language notices as well.
-          </p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- how it works -->
-    <section id="how" class="card">
+    <div class="card">
       <h2>How it works</h2>
-      <p class="section-text">
-        Simple process designed for busy creators, studios, and agencies.
-      </p>
-      <ol class="steps">
-        <li>Submit the form (EN or ES) with links and proof of ownership.</li>
-        <li>We verify ownership, collect evidence, and draft platform-compliant notices.</li>
-        <li>We file the reports and follow up after 72h if the content is still live.</li>
+      <ol>
+        <li>You submit the form.</li>
+        <li>We verify ownership and gather evidence.</li>
+        <li>We contact the platform and follow up.</li>
       </ol>
-    </section>
+    </div>
 
-    <!-- pricing -->
-    <section id="pricing" class="card">
+    <div class="card">
       <h2>Pricing</h2>
-      <p class="section-text">
-        Straight-forward structure: setup fee per case plus a success fee per confirmed removal.
-      </p>
-      <ul class="pricing-list">
-        <li><span class="pricing-tag">Starter — solo creators:</span> €49 setup per case + €30 per confirmed removal (per URL).</li>
-        <li><span class="pricing-tag">Creator pack — up to 20 URLs / month:</span> €249 / month, includes up to 20 URLs (new or recurring) and follow-ups. Extra confirmed removals: €15 / URL.</li>
-        <li><span class="pricing-tag">Studios / agencies:</span> Custom plans for 10+ creators or 200+ URLs / month. Email us at <a href="mailto:contact@retiralink.com">contact@retiralink.com</a>.</li>
-        <li style="margin-top:6px;"><em>No removal → no success fee. You only pay the setup fee and confirmed removals.</em></li>
+      <ul>
+        <li><b>Single takedown:</b> €49 setup + €30 per confirmed removal</li>
+        <li><b>Bundle (10 URLs):</b> €199 + €20 per confirmed removal</li>
+        <li><i>No removal, no success fee.</i></li>
       </ul>
-    </section>
+    </div>
 
-    <!-- FAQ -->
-    <section id="faq" class="card">
-      <h2>FAQ</h2>
-
-      <div class="faq-item">
-        <div class="faq-q">Which platforms do you support?</div>
-        <div class="faq-a">
-          We regularly handle reports on Reddit, X / Twitter, Instagram, TikTok, YouTube, OnlyFans / Fansly
-          and most major hosting providers. If you have a different platform, include it in the form and we’ll review it.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">Do you guarantee content removal?</div>
-        <div class="faq-a">
-          No one can honestly guarantee removals. We prepare strong, policy-compliant notices with evidence and
-          follow-ups. You only pay the success fee for confirmed removals.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">How quickly do you act?</div>
-        <div class="faq-a">
-          We usually send the first takedown within 24–48 hours after receiving a complete request
-          (forms, proof, and links).
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">Do you work in Spanish?</div>
-        <div class="faq-a">
-          Yes — we can draft and submit notices in Spanish for Spanish-language or LATAM platforms.
-          Use the ES form if you prefer to describe the case in Spanish.
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <h2>Client Testimonials</h2>
+      <div class="tile">“Amazing speed. Content was down in 48 hours.” — A.S.</div>
+      <div class="tile">“Handled my issue with TikTok very professionally.” — M.L.</div>
+      <div class="tile">“Highly recommend for bilingual support.” — J.R.</div>
+    </div>
 
     <footer>
-      Contact: <a id="contact" href="mailto:contact@retiralink.com">contact@retiralink.com</a>
+      &copy; 2025 RetiraLink. All rights reserved.
     </footer>
   </div>
 
+  <!-- CONFIG SCRIPT TO LOAD BUTTON LINKS -->
   <script>
-  fetch('/config.json')
-    .then(r => r.json())
-    .then(cfg => {
+    fetch('/config.json').then(r => r.json()).then(cfg => {
       document.getElementById('cta-en').href = cfg.form_en;
       document.getElementById('cta-es').href = cfg.form_es;
-      var el = document.getElementById('contact');
-      if(cfg.contact_email){ el.textContent = cfg.contact_email; el.href = 'mailto:'+cfg.contact_email; }
-      if(cfg.brand_name){ document.title = cfg.brand_name + ' — Content Takedowns'; }
     });
-</script>
-  
+  </script>
+
+  <!-- OPTIONAL LIVE CHAT -->
+  <!-- Replace with real widget if needed -->
+  <!-- <script src="YOUR_CHAT_WIDGET.js"></script> -->
+
 </body>
 </html>

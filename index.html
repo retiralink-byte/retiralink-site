@@ -1,126 +1,149 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RetiraLink — Content Takedowns</title>
-  <link rel="icon" href="/assets/favicon.svg">
+  <link rel="icon" href="/assets/favicon.svg" />
   <style>
     :root {
-      --bg: #a855f7;
+      --bg: #3b0d4f;
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
       --stroke: rgba(15,23,42,.08);
       --accent: #ec4899;
-      --accent2: #9333ea;
+      --accent2: #a855f7;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-main);
+      line-height: 1.6;
     }
     .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 32px;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
     }
     .card {
       background: var(--card-bg);
-      border: 1px solid var(--stroke);
       border-radius: 16px;
       padding: 28px;
-      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
     }
     h1, h2 {
-      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
     }
     .btn {
       display: inline-block;
-      padding: 12px 18px;
+      padding: 12px 20px;
       border-radius: 12px;
-      background: var(--accent2);
-      color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s ease;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      transition: transform 0.2s;
     }
     .btn:hover {
-      background: var(--accent);
+      transform: translateY(-2px);
     }
-    .cta { margin-top: 16px; }
-    .tile {
+    nav {
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+    }
+    nav a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    .platforms div {
       background: #f3f4f6;
+      padding: 12px;
       border-radius: 10px;
-      padding: 16px;
-      font-size: 0.95rem;
-      margin-bottom: 10px;
+      text-align: center;
     }
     footer {
+      margin-top: 40px;
       font-size: 0.9rem;
-      opacity: 0.6;
-      margin-top: 30px;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
-
   <div class="wrap">
     <div class="card">
       <header>
-        <h1>RetiraLink — Remove Stolen Content Fast</h1>
-        <p>Platform-compliant takedown requests for creators and businesses. Bilingual support: English & Español.</p>
+        <h1>RetiraLink — Content Takedowns</h1>
+        <p>We remove stolen content fast. Bilingual. Platform-compliant.</p>
+        <nav>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
       </header>
-
-      <div class="cta">
+      <div>
         <a id="cta-en" class="btn" href="#" target="_blank" rel="noopener">Start Request (EN)</a>
         <a id="cta-es" class="btn" href="#" target="_blank" rel="noopener">Iniciar Solicitud (ES)</a>
       </div>
     </div>
 
-    <div class="card">
+    <section id="how" class="card" style="margin-top: 40px;">
       <h2>How it works</h2>
       <ol>
-        <li>You submit the form.</li>
+        <li>Submit the form (EN/ES).</li>
         <li>We verify ownership and gather evidence.</li>
-        <li>We contact the platform and follow up.</li>
+        <li>We send platform notices and follow up after 72h.</li>
       </ol>
-    </div>
+    </section>
 
-    <div class="card">
+    <section id="pricing" class="card" style="margin-top: 40px;">
       <h2>Pricing</h2>
       <ul>
-        <li><b>Single takedown:</b> €49 setup + €30 per confirmed removal</li>
+        <li><b>Per takedown:</b> €49 setup + €30 per confirmed removal</li>
         <li><b>Bundle (10 URLs):</b> €199 + €20 per confirmed removal</li>
         <li><i>No removal, no success fee.</i></li>
       </ul>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Client Testimonials</h2>
-      <div class="tile">“Amazing speed. Content was down in 48 hours.” — A.S.</div>
-      <div class="tile">“Handled my issue with TikTok very professionally.” — M.L.</div>
-      <div class="tile">“Highly recommend for bilingual support.” — J.R.</div>
-    </div>
+    <section class="card" style="margin-top: 40px;">
+      <h2>Platforms we support</h2>
+      <div class="platforms">
+        <div>Reddit</div>
+        <div>X / Twitter</div>
+        <div>Instagram</div>
+        <div>TikTok</div>
+        <div>YouTube</div>
+        <div>OnlyFans / Fansly</div>
+      </div>
+    </section>
 
     <footer>
-      &copy; 2025 RetiraLink. All rights reserved.
+      Contact us if you need help in Spanish (LATAM) or English.
     </footer>
   </div>
 
-  <!-- CONFIG SCRIPT TO LOAD BUTTON LINKS -->
   <script>
-    fetch('/config.json').then(r => r.json()).then(cfg => {
-      document.getElementById('cta-en').href = cfg.form_en;
-      document.getElementById('cta-es').href = cfg.form_es;
-    });
+    fetch('/config.json')
+      .then(r => r.json())
+      .then(cfg => {
+        document.getElementById('cta-en').href = cfg.form_en;
+        document.getElementById('cta-es').href = cfg.form_es;
+      });
   </script>
-
-  <!-- OPTIONAL LIVE CHAT -->
-  <!-- Replace with real widget if needed -->
-  <!-- <script src="YOUR_CHAT_WIDGET.js"></script> -->
-
 </body>
 </html>

@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RetiraLink — Content Takedowns</title>
   <link rel="icon" href="/assets/favicon.svg" />
   <style>
@@ -11,108 +12,75 @@
       --card-bg: #ffffff;
       --text-main: #111827;
       --text-muted: #4b5563;
-      --stroke: rgba(15, 23, 42, 0.08);
-      --accent: #ec4899; /* pink */
-      --accent2: #a855f7; /* purple */
+      --stroke: rgba(15,23,42,.08);
+      --accent: #ec4899;
+      --accent2: #a855f7;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-main);
-    }
-
-    .wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--stroke);
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 28px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    header .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    .badge {
-      background: var(--accent2);
-      color: white;
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.75rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--text-muted);
       line-height: 1.6;
     }
-
-    .cta {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+    .wrap {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
     }
-
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+    h1, h2 {
+      margin-bottom: 16px;
+    }
+    p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
     .btn {
-      text-decoration: none;
+      display: inline-block;
       padding: 12px 20px;
       border-radius: 12px;
-      font-weight: 600;
-      border: 1px solid transparent;
+      text-decoration: none;
       color: white;
-      background: var(--accent2);
-      transition: background 0.3s ease;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      transition: transform 0.2s;
     }
-
     .btn:hover {
-      background: var(--accent);
+      transform: translateY(-2px);
     }
-
-    .grid {
+    nav {
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+    }
+    nav a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .platforms {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 12px;
-      margin-top: 20px;
     }
-
-    .tile {
+    .platforms div {
       background: #f3f4f6;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 0.95rem;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
     }
-
     footer {
-      margin-top: 24px;
-      font-size: 0.85rem;
+      margin-top: 40px;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
   </style>
@@ -121,50 +89,60 @@
   <div class="wrap">
     <div class="card">
       <header>
-        <div class="brand">
-          <img src="/assets/logo.svg" alt="RetiraLink" width="36" height="36" />
-          RetiraLink
-          <span class="badge">EN / ES Support</span>
-        </div>
+        <h1>RetiraLink — Content Takedowns</h1>
+        <p>We remove stolen content fast. Bilingual. Platform-compliant.</p>
+        <nav>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
       </header>
-
-      <h1>Remove stolen or harmful content fast</h1>
-      <p>
-        We help creators and businesses submit takedown requests across Reddit, X, Instagram, TikTok, YouTube and more. 
-        Our team operates bilingually and follows each platform's compliance rules.
-      </p>
-
-      <div class="cta">
-        <a id="cta-en" class="btn" href="#" target="_blank">Start Request (EN)</a>
-        <a id="cta-es" class="btn" href="#" target="_blank">Iniciar solicitud (ES)</a>
+      <div>
+        <a id="cta-en" class="btn" href="#" target="_blank" rel="noopener">Start Request (EN)</a>
+        <a id="cta-es" class="btn" href="#" target="_blank" rel="noopener">Iniciar Solicitud (ES)</a>
       </div>
-
-      <div class="grid">
-        <div class="tile">✔️ DMCA/Notice submissions</div>
-        <div class="tile">✔️ Evidence collection</div>
-        <div class="tile">✔️ Follow-up support (72h)</div>
-      </div>
-
-      <footer>
-        Contact us: <a id="contact" href="#"></a>
-      </footer>
     </div>
+
+    <section id="how" class="card" style="margin-top: 40px;">
+      <h2>How it works</h2>
+      <ol>
+        <li>Submit the form (EN/ES).</li>
+        <li>We verify ownership and gather evidence.</li>
+        <li>We send platform notices and follow up after 72h.</li>
+      </ol>
+    </section>
+
+    <section id="pricing" class="card" style="margin-top: 40px;">
+      <h2>Pricing</h2>
+      <ul>
+        <li><b>Per takedown:</b> €49 setup + €30 per confirmed removal</li>
+        <li><b>Bundle (10 URLs):</b> €199 + €20 per confirmed removal</li>
+        <li><i>No removal, no success fee.</i></li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top: 40px;">
+      <h2>Platforms we support</h2>
+      <div class="platforms">
+        <div>Reddit</div>
+        <div>X / Twitter</div>
+        <div>Instagram</div>
+        <div>TikTok</div>
+        <div>YouTube</div>
+        <div>OnlyFans / Fansly</div>
+      </div>
+    </section>
+
+    <footer>
+      Contact us if you need help in Spanish (LATAM) or English.
+    </footer>
   </div>
 
   <script>
-    fetch("/config.json")
-      .then((res) => res.json())
-      .then((cfg) => {
-        document.getElementById("cta-en").href = cfg.form_en;
-        document.getElementById("cta-es").href = cfg.form_es;
-        const contact = document.getElementById("contact");
-        if (cfg.contact_email) {
-          contact.textContent = cfg.contact_email;
-          contact.href = `mailto:${cfg.contact_email}`;
-        }
-        if (cfg.brand_name) {
-          document.title = cfg.brand_name + " — Content Takedowns";
-        }
+    fetch('/config.json')
+      .then(r => r.json())
+      .then(cfg => {
+        document.getElementById('cta-en').href = cfg.form_en;
+        document.getElementById('cta-es').href = cfg.form_es;
       });
   </script>
 </body>
